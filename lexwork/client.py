@@ -34,7 +34,7 @@ class APIClient:
         response = self._make_request(
             "admin_interface/pdf_signature_jobs.json", "post", json=data
         )
-        return response.get("result", {"data": ""}).get("data")
+        return response.get("result", {"signed_data": ""}).get("signed_data")
 
     def _make_request(self, path, verb="get", **kwargs):
         response = getattr(self.session, verb)(urljoin(self.url, path), **kwargs)
