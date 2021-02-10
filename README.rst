@@ -10,7 +10,7 @@ Installing it:
 
 .. code-block:: bash
 
-   pip install lexwork.apiclient
+   pip install git+git://github.com/4teamwork/lexwork.git#egg=lexwork
 
 
 Usage
@@ -20,7 +20,7 @@ Usage
 
    from lexwork.apiclient import APIClient
 
-   client = APIClient(username='user', password='secret')
+   client = APIClient(url='https://lexwork.example.org', username='user', password='secret')
    client.test() # Raises an exception if the request wasn't successful
    client.pdf_signature_reasons() # Returns an array of valid signature reasons
 
