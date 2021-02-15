@@ -14,7 +14,7 @@ class APIClient:
         )
 
     def test(self):
-        response = self.session.get(urljoin(self.url, "admin_interface/test.json"))
+        response = self._make_request("admin_interface/test.json")
         return response
 
     def pdf_signature_reasons(self):
