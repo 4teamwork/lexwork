@@ -7,7 +7,7 @@ import requests
 
 class APIClient:
     def __init__(self, url, username, password):
-        self.url = url
+        self.url = url.rstrip("/") + "/"
         self.session = requests.Session()
         self.session.headers.update(
             {"X-LEXWORK-LOGIN": username, "X-LEXWORK-PASSWORD": password}
