@@ -27,7 +27,7 @@ class APIClient:
         data = {
             "pdf_signature_job": {
                 "file_name": file_name,
-                "data": base64.b64encode(file_like.read()),
+                "data": str(base64.b64encode(file_like.read()), "utf-8"),
                 "reason_for_signature": reason,
             }
         }
