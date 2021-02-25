@@ -19,5 +19,5 @@ setup(
     packages=find_packages(exclude=["ez_setup"]),
     include_package_data=True,
     zip_safe=False,
-    install_requires=["requests"],
+    install_requires=["requests", "urllib3<2"],
 )

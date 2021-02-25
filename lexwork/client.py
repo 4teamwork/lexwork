@@ -14,7 +14,7 @@ class APIClient:
         retries = Retry(
             backoff_factor=1,
             status_forcelist=[429, 502, 503, 504],
-            allowed_methods=frozenset(
+            method_whitelist=frozenset(
                 ["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE", "POST"]
             ),
         )
