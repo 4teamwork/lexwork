@@ -3,12 +3,22 @@ import os
 from urllib.parse import urljoin
 
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 
 class APIClient:
     def __init__(self, url, username, password):
         self.url = url.rstrip("/") + "/"
         self.session = requests.Session()
+        retries = Retry(
+            backoff_factor=1,
+            status_forcelist=[429, 502, 503, 504],
+            allowed_methods=frozenset(
+                ["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE", "POST"]
+            ),
+        )
+        self.session.mount(self.url, HTTPAdapter(max_retries=retries))
         self.session.headers.update(
             {"X-LEXWORK-LOGIN": username, "X-LEXWORK-PASSWORD": password}
         )
