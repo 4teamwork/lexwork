@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 
 import requests
 from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+from urllib3 import Retry
 
 
 class APIClient:
@@ -13,11 +13,11 @@ class APIClient:
         self.base_api_path = "/api/signer/v1"
         self.session = requests.Session()
         retries = Retry(
-            backoff_factor=1,
-            status_forcelist=[429, 502, 503, 504],
-            method_whitelist=frozenset(
+            allowed_methods=frozenset(
                 ["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE", "POST"]
             ),
+            backoff_factor=1,
+            status_forcelist=[429, 502, 503, 504],
         )
         self.session.mount(self.url, HTTPAdapter(max_retries=retries))
         self.session.headers.update(
