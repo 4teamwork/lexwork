@@ -10,6 +10,7 @@ from requests.packages.urllib3.util.retry import Retry
 class APIClient:
     def __init__(self, url, username, password):
         self.url = url.rstrip("/") + "/"
+        self.base_api_path = "/api/signer/v1"
         self.session = requests.Session()
         retries = Retry(
             backoff_factor=1,
@@ -47,6 +48,6 @@ class APIClient:
         return response.json().get("result", {"signed_data": ""}).get("signed_data")
 
     def _make_request(self, path, verb="get", **kwargs):
-        response = getattr(self.session, verb)(urljoin(self.url, path), **kwargs)
+        response = getattr(self.session, verb)(urljoin(self.url, self.base_api_path, path), **kwargs)
         response.raise_for_status()
         return response
