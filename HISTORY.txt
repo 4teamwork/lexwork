@@ -2,6 +2,12 @@
 Changelog
 =========
 
+2.0.0
+------------------
+
+- Implement API-Changes from Sitrox: Adapt base api path and use JSON.
+  [jch]
+
 
 1.0.0
 ------------------
