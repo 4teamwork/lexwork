@@ -25,11 +25,11 @@ class APIClient:
         )
 
     def test(self):
-        response = self._make_request("admin_interface/test.json")
+        response = self._make_request("test")
         return response
 
     def pdf_signature_reasons(self):
-        response = self._make_request("admin_interface/pdf_signature_reasons.json")
+        response = self._make_request("pdf_signature_reasons")
         return response.json().get("result", [])
 
     def sign_pdf(self, file_like, reason, file_name=None):
@@ -42,9 +42,7 @@ class APIClient:
                 "reason_for_signature": reason,
             }
         }
-        response = self._make_request(
-            "admin_interface/pdf_signature_jobs.json", "post", json=data
-        )
+        response = self._make_request("pdf_signature_jobs", "post", json=data)
         return response.json().get("result", {"signed_data": ""}).get("signed_data")
 
     def _make_request(self, path, verb="get", **kwargs):
