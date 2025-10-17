@@ -25,8 +25,7 @@ class APIClient:
         )
 
     def test(self):
-        response = self._make_request("test")
-        return response
+        return self._make_request("test")
 
     def pdf_signature_reasons(self):
         response = self._make_request("pdf_signature_reasons")
