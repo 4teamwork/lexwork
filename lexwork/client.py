@@ -44,7 +44,7 @@ class APIClient:
         response = self._make_request("pdf_signature_jobs", "post", json=data)
         return response.json().get("result", {"signed_data": ""}).get("signed_data")
 
-    def _make_request(self, path, verb="get", **kwargs):
-        response = getattr(self.session, verb)(urljoin(self.url, self.base_api_path, path), **kwargs)
+    def _make_request(self, path, method="get", **kwargs):
+        response = getattr(self.session, method)(urljoin(self.url, self.base_api_path, path), **kwargs)
         response.raise_for_status()
         return response
