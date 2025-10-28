@@ -10,7 +10,7 @@ from urllib3 import Retry
 class APIClient:
     def __init__(self, url, username, password):
         self.url = url.rstrip("/") + "/"
-        self.base_api_path = "/api/signer/v1"
+        self.base_api_path = "/api/signer/v1/"
         self.session = requests.Session()
         retries = Retry(
             allowed_methods=frozenset(
@@ -46,7 +46,7 @@ class APIClient:
 
     def _make_request(self, path, method="get", **kwargs):
         response = getattr(self.session, method)(
-            urljoin(self.url, self.base_api_path, path), **kwargs
+            urljoin(urljoin(self.url, self.base_api_path), path), **kwargs
         )
         response.raise_for_status()
         return response
