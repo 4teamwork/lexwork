@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ftw-lexwork"
-version = "2025.1.0"
+version = "2025.1.1"
 description = "API Client for Lexwork PDF Signer."
 authors = ["4teamwork AG"]
 readme = "README.rst"
