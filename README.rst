@@ -18,14 +18,14 @@ Usage
 
 .. code-block:: python
 
-   from lexwork.apiclient import APIClient
+   from lexwork import APIClient
 
    client = APIClient(url='https://lexwork.example.org', username='user', password='secret')
    client.test() # Raises an exception if the request wasn't successful
    client.pdf_signature_reasons() # Returns an array of valid signature reasons
 
    # Returns the signed PDF as a base64 string
-   signed_pdf = client.sign_pdf(file=file_like, reason_for_signature='something important')
+   signed_pdf = client.sign_pdf(file_like=file_like, reason='something important')
    
 
    

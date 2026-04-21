@@ -21,7 +21,11 @@ class APIClient:
         )
         self.session.mount(self.url, HTTPAdapter(max_retries=retries))
         self.session.headers.update(
-            {"X-LEXWORK-LOGIN": username, "X-LEXWORK-PASSWORD": password}
+            {
+                "Accept": "application/json",
+                "X-LEXWORK-LOGIN": username,
+                "X-LEXWORK-PASSWORD": password,
+            }
         )
 
     def test(self):
@@ -33,7 +37,7 @@ class APIClient:
 
     def sign_pdf(self, file_like, reason, file_name=None):
         if not file_name:
-            file_name = os.path.basename(file_like)
+            file_name = os.path.basename(file_like.name)
         data = {
             "pdf_signature_job": {
                 "file_name": file_name,

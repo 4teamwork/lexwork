@@ -23,6 +23,8 @@ jobs:
           poetry-version: 2.1
       - name: Install dependencies
         run: poetry install
+      - name: Tests
+        run: poetry run python -m unittest discover -s tests
       - name: isort
         run: poetry run isort --check-only --quiet --settings pyproject.toml .
       - name: flake8
